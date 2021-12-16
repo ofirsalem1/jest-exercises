@@ -2,6 +2,7 @@ import { createStore, combineReducers } from 'redux';
 
 const usersReducer = (state, action) => {
   // Implement this reducer to pass the tests below
+  console.log(action);
 };
 
 const configureStore = (initialState = {}) => {
@@ -9,7 +10,7 @@ const configureStore = (initialState = {}) => {
     combineReducers({
       users: usersReducer,
     }),
-    initialState,
+    initialState
   );
 };
 
@@ -35,7 +36,7 @@ describe('usersReducer', () => {
         addUserAction({
           name: 'Kyle Welch',
           handle: 'kwelch',
-        }),
+        })
       );
 
       // assert
@@ -46,7 +47,7 @@ describe('usersReducer', () => {
         addUserAction({
           name: 'Jane Smith',
           handle: 'jsmith',
-        }),
+        })
       );
 
       // assert
@@ -60,7 +61,7 @@ describe('usersReducer', () => {
           name: 'Kyle Welch',
           handle: 'kwelch',
           role: 'Test Driven Developer',
-        }),
+        })
       );
 
       // assert
