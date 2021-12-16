@@ -1,13 +1,18 @@
 // setPrice(item: Object, price: Number) => item: Object
 const setPrice = (item, price) => {
-  // TODO: implement
+  // item.price = price;
+  const copy = Object.assign({}, item);
+  copy.price = price;
+  return copy;
 };
 
 // addToCart(cart: Array, item: Object) => cart: Array
 const addToCart = (cart, item) => {
   // TODO: implement
+  const copy = cart.slice();
+  copy.push(item);
+  return copy;
 };
-
 describe('setPrice()', () => {
   it('should set the price in the given item object, immutably.', () => {
     const item = {
