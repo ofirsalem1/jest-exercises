@@ -1,7 +1,18 @@
 import { createStore, combineReducers } from 'redux';
 
-const usersReducer = (state, action) => {
-  // Implement this reducer to pass the tests below
+const usersReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'SAVE_USER':
+      const userIndex = state.findIndex((user) => user.handle === action.user.handle);
+      if (userIndex !== -1) {
+        state[userIndex] = action.user;
+      } else {
+        state = [...state, action.user];
+      }
+      return state;
+    default:
+      return state;
+  }
 };
 
 const configureStore = (initialState = {}) => {
@@ -9,7 +20,7 @@ const configureStore = (initialState = {}) => {
     combineReducers({
       users: usersReducer,
     }),
-    initialState,
+    initialState
   );
 };
 
@@ -24,7 +35,7 @@ describe('usersReducer', () => {
   describe('SAVE_USER action', () => {
     // arrange
     const store = configureStore({});
-    const addUserAction = user => ({
+    const addUserAction = (user) => ({
       type: 'SAVE_USER',
       user,
     });
@@ -35,7 +46,7 @@ describe('usersReducer', () => {
         addUserAction({
           name: 'Kyle Welch',
           handle: 'kwelch',
-        }),
+        })
       );
 
       // assert
@@ -46,7 +57,7 @@ describe('usersReducer', () => {
         addUserAction({
           name: 'Jane Smith',
           handle: 'jsmith',
-        }),
+        })
       );
 
       // assert
@@ -60,7 +71,7 @@ describe('usersReducer', () => {
           name: 'Kyle Welch',
           handle: 'kwelch',
           role: 'Test Driven Developer',
-        }),
+        })
       );
 
       // assert
