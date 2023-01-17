@@ -28,8 +28,13 @@ const users = [
 
 // lookup()
 const lookup = (login, property) => {
-  // START -- THIS IS WHERE YOUR CODE GOES
-  // END
+  const user = users.find((user) => user.login === login);
+  if (user) {
+    const userProperty = user[property];
+    if (userProperty) return userProperty;
+    throw new Error('Could not find property');
+  }
+  throw new Error('Could not find user');
 };
 
 // Tests
